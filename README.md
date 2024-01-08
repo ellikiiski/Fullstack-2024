@@ -1,2 +1,21 @@
-# Fullstack-2024
-Fullstack tuo, fullstack tuo, fullastack tuo töitä jokaisen luo... (kolmas kerta toden sanoo)
+# Fullstack 2024
+Tämän kurssin aloittaminen on ollut parillisten vuosien perinne, jospa kolmannella kerralla saisi homman vietyä ihan maaliin saakka
+
+### Kurssi Fullstack open 2022
+Linkki [kurssimateriaaliin](https://fullstackopen.com/), joka varmaankin saattaa muuttua vuosien varrella.
+
+#### TEHTÄVÄT
+* [OSA 0](https://github.com/ellikiiski/Fullstack-2022/tree/main/osa-0) (4-6) (toistaiseksi vanha linkki vuoden 2022 repoon)
+* [OSA 1](https://github.com/ellikiiski/Fullstack-2022/tree/main/osa-1) (toistaiseksi vanha linkki vuoden 2022 repoon)
+  * [Kurssitiedot](https://github.com/ellikiiski/Fullstack-2022/tree/main/osa-1/kurssitiedot/src) (1-5) (toistaiseksi vanha linkki vuoden 2022 repoon)
+  * [Unicafe](https://github.com/ellikiiski/Fullstack-2022/tree/main/osa-1/unicafe/src) (6-11) (toistaiseksi vanha linkki vuoden 2022 repoon)
+  * [Anekdootit](https://github.com/ellikiiski/Fullstack-2022/tree/main/osa-1/anekdootit/src) (12-14) (toistaiseksi vanha linkki vuoden 2022 repoon)
+* [OSA 2](https://github.com/ellikiiski/Fullstack-2022/tree/main/osa-2) (toistaiseksi vanha linkki vuoden 2022 repoon)
+* OSA 3
+* OSA 4
+* OSA 5
+* OSA 6
+* OSA 7
+* OSA 8
+* OSA 9
+
