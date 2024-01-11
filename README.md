@@ -1,7 +1,7 @@
 # Fullstack 2024
 Tämän kurssin aloittaminen on ollut parillisten vuosien perinne, jospa kolmannella kerralla saisi homman vietyä ihan maaliin saakka
 
-### Kurssi Fullstack open 2022
+### Kurssi Fullstack open
 Linkki [kurssimateriaaliin](https://fullstackopen.com/), joka varmaankin saattaa muuttua vuosien varrella.
 
 #### TEHTÄVÄT
