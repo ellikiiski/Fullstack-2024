@@ -18,7 +18,7 @@ const Button = ({text, onClick }) => {
   )
 }
 
-const Statistics = ({ good, ok, bad }) => {
+const Statistics = ({ good, ok, bad }) => { // hähää tehty jo
   const sum = good + ok + bad
   return (
     <>
