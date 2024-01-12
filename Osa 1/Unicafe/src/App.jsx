@@ -19,12 +19,18 @@ const Button = ({text, onClick }) => {
 }
 
 const Statistics = ({ good, ok, bad }) => {
+  const sum = good + ok + bad
   return (
     <>
       <p>
         hyvä {good} <br></br>
         neutraali {ok} <br></br>
         huono {bad}
+      </p>
+      <p>
+        yhteensä {sum} <br></br>
+        keskiarvo {(good-bad)/sum} <br></br>
+        positiivista {good/sum*100 + "%"}
       </p>
     </>
   )
