@@ -8,7 +8,7 @@ const Header = ({ text }) => {
   )
 }
 
-const Button = ({text, onClick }) => { // hähää tehty jo
+const Button = ({text, onClick }) => {
   return (
     <>
       <button onClick={onClick}>
@@ -18,39 +18,42 @@ const Button = ({text, onClick }) => { // hähää tehty jo
   )
 }
 
-const StatisticLine = ({ text, value }) => { // ihan turha refaktorointi...
+const StatisticLine = ({ text, value }) => {
   return (
     <>
-      <p>
-        {text} {value}
-      </p>
+      <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+      </tr>
     </>
   )
 }
 
 const Statistics = ({ good, ok, bad }) => {
-  const sum = good + ok + bad
-  const average = (good-bad)/sum
-  const positive = good/sum*100 + "%"
+  const sum = good + ok + bad;
+  const average = (good - bad) / sum;
+  const positive = (good / sum) * 100 + "%"
 
-  if (sum == 0) {
+  if (sum === 0) {
     return (
       <>
-        <p>
-          Palautetta ei vielä annettu.
-        </p>
+        <p>Palautetta ei vielä annettu.</p>
       </>
     )
   }
 
   return (
     <>
-      <StatisticLine text={"hyvä"} value={good} />
-      <StatisticLine text={"neutraali"} value={ok} />
-      <StatisticLine text={"huono"} value={bad} />
-      <StatisticLine text={"yhteensö"} value={sum} />
-      <StatisticLine text={"keskiarvo"} value={average} />
-      <StatisticLine text={"positiivista"} value={positive} />
+      <table>
+        <tbody>
+          <StatisticLine text={"hyvä"} value={good} />
+          <StatisticLine text={"neutraali"} value={ok} />
+          <StatisticLine text={"huono"} value={bad} />
+          <StatisticLine text={"yhteensä"} value={sum} />
+          <StatisticLine text={"keskiarvo"} value={average} />
+          <StatisticLine text={"positiivista"} value={positive} />
+        </tbody>
+      </table>
     </>
   )
 }
