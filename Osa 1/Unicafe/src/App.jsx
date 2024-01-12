@@ -20,6 +20,17 @@ const Button = ({text, onClick }) => {
 
 const Statistics = ({ good, ok, bad }) => { // hähää tehty jo
   const sum = good + ok + bad
+
+  if (sum == 0) {
+    return (
+      <>
+        <p>
+          Palautetta ei vielä annettu.
+        </p>
+      </>
+    )
+  }
+
   return (
     <>
       <p>
