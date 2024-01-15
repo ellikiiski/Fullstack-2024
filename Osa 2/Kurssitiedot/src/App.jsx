@@ -28,17 +28,16 @@ const Content = ({ parts }) => {
   )
 }
 
-const Total = ({ parts }) => { // aha se oliki heti seuraava osa, no boldataan nyt vaik
-  let sum = 0
-  for (let i = 0; i < parts.length; i++) {
-    sum += parts[i].exercises
-  }
+const Total = ({ parts }) => {
+  const sum = parts.reduce((accumulator, part) => accumulator + part.exercises, 0);
+
   return (
     <>
       <p><b>Number of exercises {sum}</b></p>
     </>
-  )
-}
+  );
+};
+
 
 const Course = ({ course }) => {
   return (
