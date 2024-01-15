@@ -28,14 +28,14 @@ const Content = ({ parts }) => {
   )
 }
 
-const Total = ({ parts }) => { // teinpähän nyt kuitenkin vaikkei tarvinnu
+const Total = ({ parts }) => { // aha se oliki heti seuraava osa, no boldataan nyt vaik
   let sum = 0
   for (let i = 0; i < parts.length; i++) {
     sum += parts[i].exercises
   }
   return (
     <>
-      <p>Number of exercises {sum}</p>
+      <p><b>Number of exercises {sum}</b></p>
     </>
   )
 }
