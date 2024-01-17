@@ -11,11 +11,24 @@ const Contact = ({ person }) => {
 const App = () => {
   const [persons, setPersons] = useState([
     { key: 0,
-      name: 'elli kiiski',
-      number: '666'}
+      name: 'elppa koo',
+      number: '666'},
+    { key: 1,
+      name: 'jerppa pee',
+      number: '123'},
+    { key: 2,
+      name: 'jenppa vee',
+      number: '365'},
+    { key: 3,
+      name: 'erppa rää',
+      number: '816'},
+    { key: 4,
+      name: 'irppa lää',
+      number: '381'}
   ]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [newFilter, setNewFilter] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
@@ -38,9 +51,15 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
+  const handleFilterChange = (event) => {
+    setNewFilter(event.target.value)
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <div>filter: <input value={newFilter} onChange={handleFilterChange}/></div>
+      <h3>Add a new contact</h3>
       <form onSubmit={addName}>
         <div>name: <input value={newName} onChange={handleNameChange}/></div>
         <div>number: <input value={newNumber} onChange={handleNumberChange} /></div>
@@ -50,11 +69,10 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <ul>
-        {persons.map((person, i) => <Contact key={person.key} person={person}/>)}
+        {persons.filter(person => person.name.includes(newFilter)).map((person, i) => <Contact key={person.key} person={person}/>)}
       </ul>
     </div>
   )
-
 }
 
 export default App
