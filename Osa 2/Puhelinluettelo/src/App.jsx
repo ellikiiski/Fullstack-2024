@@ -8,6 +8,36 @@ const Contact = ({ person }) => {
   )
 }
 
+const ContactList = ({ persons, filter }) => {
+  return (
+    <>
+      <ul>
+        {persons.filter(person => person.name.includes(filter)).map((person, i) => <Contact key={person.key} person={person}/>)}
+      </ul>
+    </>
+  )
+}
+
+const Filter = ({ filter, onChange }) => {
+  return (
+    <div>filter: <input value={filter} onChange={onChange}/></div>
+  )
+}
+
+const AddForm = ({ onSubmit, nameVar, numberVar, nameFunc, numberFunc }) => {
+  return (
+    <>
+      <form onSubmit={onSubmit}>
+        <div>name: <input value={nameVar} onChange={nameFunc}/></div>
+        <div>number: <input value={numberVar} onChange={numberFunc} /></div>
+        <div>
+          <button type="submit">add</button>
+        </div>
+      </form>
+    </>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([
     { key: 0,
@@ -58,19 +88,12 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>filter: <input value={newFilter} onChange={handleFilterChange}/></div>
+      <Filter filter={newFilter} onChange={handleFilterChange} />
       <h3>Add a new contact</h3>
-      <form onSubmit={addName}>
-        <div>name: <input value={newName} onChange={handleNameChange}/></div>
-        <div>number: <input value={newNumber} onChange={handleNumberChange} /></div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <AddForm onSubmit={addName} nameVar={newName} nameFunc={handleNameChange}
+      numberVar={newNumber} numberFunc={handleNumberChange} />
       <h2>Numbers</h2>
-      <ul>
-        {persons.filter(person => person.name.includes(newFilter)).map((person, i) => <Contact key={person.key} person={person}/>)}
-      </ul>
+      <ContactList persons={persons} filter={newFilter}/>
     </div>
   )
 }
