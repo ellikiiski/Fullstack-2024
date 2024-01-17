@@ -12,7 +12,7 @@ const ContactList = ({ persons, filter }) => {
   return (
     <>
       <ul>
-        {persons.filter(person => person.name.includes(filter)).map((person, i) => <Contact key={person.key} person={person}/>)}
+        {persons.filter(person => person.name.includes(filter)).map(person => <Contact key={person.id} person={person}/>)}
       </ul>
     </>
   )
@@ -40,19 +40,19 @@ const AddForm = ({ onSubmit, nameVar, numberVar, nameFunc, numberFunc }) => {
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { key: 0,
+    { id: 0,
       name: 'elppa koo',
       number: '666'},
-    { key: 1,
+    { id: 1,
       name: 'jerppa pee',
       number: '123'},
-    { key: 2,
+    { id: 2,
       name: 'jenppa vee',
       number: '365'},
-    { key: 3,
+    { id: 3,
       name: 'erppa rää',
       number: '816'},
-    { key: 4,
+    { id: 4,
       name: 'irppa lää',
       number: '381'}
   ]) 
@@ -66,7 +66,7 @@ const App = () => {
     if (names.includes(newName)) {
       alert(`${newName} is already added to phonebook`)
     } else {
-      const newPerson = {key: persons.length, name: newName, number: newNumber}
+      const newPerson = {id: persons.length, name: newName, number: newNumber}
       setPersons(persons.concat(newPerson))
       setNewName('')
       setNewNumber('')
