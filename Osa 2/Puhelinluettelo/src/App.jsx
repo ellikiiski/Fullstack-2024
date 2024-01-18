@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Contact = ({ person }) => {
   return (
@@ -39,26 +40,20 @@ const AddForm = ({ onSubmit, nameVar, numberVar, nameFunc, numberFunc }) => {
 }
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { id: 0,
-      name: 'elppa koo',
-      number: '666'},
-    { id: 1,
-      name: 'jerppa pee',
-      number: '123'},
-    { id: 2,
-      name: 'jenppa vee',
-      number: '365'},
-    { id: 3,
-      name: 'erppa rää',
-      number: '816'},
-    { id: 4,
-      name: 'irppa lää',
-      number: '381'}
-  ]) 
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+
+  const hook = () => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  }
+
+  useEffect(hook, [])
 
   const addName = (event) => {
     event.preventDefault()
