@@ -12,6 +12,7 @@ Linkki [kurssimateriaaliin](https://fullstackopen.com/), joka varmaankin saattaa
   * [Anekdootit](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%201/Anekdootit) (teht. 12-14)
 * OSA 2
   * [Kurssitiedot](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%202/Kurssitiedot) (teht. 1-5)
+  * [Puhelinluettelo](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%202/Puhelinluettelo) (teht. 6-15)
 * OSA 3
 * OSA 4
 * OSA 5
