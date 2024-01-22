@@ -5,7 +5,8 @@ Tämän kurssin aloittaminen on ollut parillisten vuosien perinne, jospa kolmann
 Linkki [kurssimateriaaliin](https://fullstackopen.com/), joka varmaankin saattaa muuttua vuosien varrella.
 
 #### TEHTÄVÄT
-* [OSA 0](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%200) (teht. 4-6)
+* OSA 0
+  * [Sekvenssikaaviot](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%200) (teht. 4-6)
 * OSA 1
   * [Kurssitiedot](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%201/Kurssitiedot) (teht. 1-5)
   * [Unicafe](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%201/Unicafe) (teht. 6-11)
