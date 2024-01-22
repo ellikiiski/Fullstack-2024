@@ -59,12 +59,21 @@ const App = () => {
 
   const addName = (event) => {
     event.preventDefault()
-    const names = persons.map(person => person.name)
-    if (names.includes(newName)) {
-      alert(`${newName} is already added to phonebook`)
+    const personThatExists = persons.find(person => person.name === newName)
+    if (personThatExists !== undefined) {
+      if (window.confirm(`${personThatExists.name} is already added to phonebook. Do you want to replace their old number?`)) {
+        const newPerson = {...personThatExists, number: newNumber}
+        contactService
+          .update(personThatExists.id, newPerson)
+          .then(() => {
+            const updatedPersons = persons.filter(person => person.id !== personThatExists.id).concat(newPerson)
+            setPersons(updatedPersons)
+            setNewName('')
+            setNewNumber('')
+          })
+      }
     } else {
       const newPerson = {name: newName, number: newNumber}
-
       contactService
         .create(newPerson)
         .then(returnedContact => {
