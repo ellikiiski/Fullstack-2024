@@ -2,19 +2,24 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import contactService from './services/contacts'
 
-const Contact = ({ person }) => {
+const Contact = ({ person, onDelete }) => {
   return (
     <li>
       <p>{person.name} {person.number}</p>
+      <button onClick={onDelete}>delete</button>
     </li>
   )
 }
 
-const ContactList = ({ persons, filter }) => {
+const ContactList = ({ persons, filter, onDelete }) => {
   return (
     <>
       <ul>
-        {persons.filter(person => person.name.includes(filter)).map(person => <Contact key={person.id} person={person}/>)}
+        {persons
+          .filter(person => person.name.includes(filter))
+          .map(person => (
+            <Contact key={person.id} person={person} onDelete={() => onDelete(person.id)} />
+          ))}
       </ul>
     </>
   )
@@ -70,6 +75,16 @@ const App = () => {
     }
   }
 
+  const removeName = (id) => {
+    if (window.confirm('Are you sure you want to remove this?')) {
+      contactService
+        .remove(id)
+        .then(() => {
+          setPersons(persons.filter(person => person.id !== id))
+        })
+    }
+  }
+
   const handleNameChange = (event) => {
     setNewName(event.target.value)
   }
@@ -90,7 +105,7 @@ const App = () => {
       <AddForm onSubmit={addName} nameVar={newName} nameFunc={handleNameChange}
       numberVar={newNumber} numberFunc={handleNumberChange} />
       <h2>Numbers</h2>
-      <ContactList persons={persons} filter={newFilter}/>
+      <ContactList persons={persons} filter={newFilter} onDelete={removeName}/>
     </div>
   )
 }
