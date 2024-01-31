@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import contactService from './services/contacts'
 
 const Contact = ({ person, onDelete }) => {
@@ -45,11 +44,34 @@ const AddForm = ({ onSubmit, nameVar, numberVar, nameFunc, numberFunc }) => {
   )
 }
 
+// En nyt tiedä oliks tää sittenkään paras tapa pitää pelkkä yksi notofocation komponentti
+// mutta meni jo ja opitaan myöhemmin lisää
+const Notification = ({ message, successful }) => {
+  if (message === null) {
+    return null
+  }
+  else if (successful) { 
+    return ( // message of a successful action has class "notification"
+      <div className="notification">
+        {message}
+      </div>
+    )
+  }
+  return ( // message of an unsuccessful action has class "error"
+    <div className="error">
+      {message}
+    </div>
+  )
+
+}
+
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [message, setMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     contactService
@@ -70,17 +92,27 @@ const App = () => {
             setPersons(updatedPersons)
             setNewName('')
             setNewNumber('')
+
+            setMessage(`Updated ${newPerson.name}`)
+            setTimeout(() => setMessage(null), 3000)
+          })
+          .catch(() => {
+            setErrorMessage(`Person '${newPerson.name}' was already removed from server`)
+            setTimeout(() => setErrorMessage(null), 5000)
+            setPersons(persons.filter(person => person.id !== personThatExists.id))
           })
       }
     } else {
-      const newPerson = {name: newName, number: newNumber}
-      contactService
-        .create(newPerson)
-        .then(returnedContact => {
-          setPersons(persons.concat(returnedContact))
-          setNewName('')
-          setNewNumber('')
-        })
+        const newPerson = {name: newName, number: newNumber}
+        contactService
+          .create(newPerson)
+          .then(returnedContact => {
+            setPersons(persons.concat(returnedContact))
+            setNewName('')
+            setNewNumber('')
+          })
+        setMessage(`Added ${newPerson.name}`)
+        setTimeout(() => setMessage(null), 3000)
     }
   }
 
@@ -91,6 +123,8 @@ const App = () => {
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
         })
+      setMessage(`Removed succesfully`)
+      setTimeout(() => setMessage(null), 3000)
     }
   }
 
@@ -109,6 +143,8 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} successful={true} />
+      <Notification message={errorMessage} successful={false} />
       <Filter filter={newFilter} onChange={handleFilterChange} />
       <h3>Add a new contact</h3>
       <AddForm onSubmit={addName} nameVar={newName} nameFunc={handleNameChange}
