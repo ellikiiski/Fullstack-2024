@@ -22,3 +22,4 @@ Linkki [kurssimateriaaliin](https://fullstackopen.com/), joka varmaankin saattaa
 * OSA 8
 * OSA 9
 
+testi (ignoraa)
