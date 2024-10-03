@@ -8,6 +8,7 @@ const Button = ({ onClick, text }) => {
   )
 }
 
+// oon edelläkävijä ja olin tehny tän jo
 const Statistics = ({ good, neutral, bad }) => {
 
   let sum = good + neutral + bad
