@@ -1,6 +1,5 @@
 import { useState } from 'react'
 
-// taas edelläkävijänä olin tän tehny jo
 const Button = ({ onClick, text }) => {
   return (
     <>
@@ -9,16 +8,16 @@ const Button = ({ onClick, text }) => {
   )
 }
 
-// tää pilaa mun hienon  sommittelun buuuuuuuuuuuuuuuuuuuu
 const StatisticLine = ({ text, value }) => {
   return (
     <>
-      <p>{text}: {value}</p>
+      <tr>
+        <td>{text}:    </td>
+        <td>{value}</td></tr>
     </>
   )
 }
 
-// ihan turha refaktorointi kaikki meni monimutkasemmaksi ja rumemmaksi...
 const Statistics = ({ good, neutral, bad }) => {
 
   let sum = good + neutral + bad
@@ -29,13 +28,16 @@ const Statistics = ({ good, neutral, bad }) => {
   if (sum !== 0) {
     return (
       <>
-        <StatisticLine text={'hyvää'} value={good} />
-        <StatisticLine text={'ok'} value={neutral} />
-        <StatisticLine text={'pahaa'} value={bad} />
-        <StatisticLine text={'YHTEENSÄ'} value={sum} />
-        <br />
-        <StatisticLine text={'keskiarvo'} value={average} />
-        <StatisticLine text={'positiivista'} value={positive} />
+        <table>
+          <tbody>
+            <StatisticLine text={'hyvää'} value={good} />
+            <StatisticLine text={'ok'} value={neutral} />
+            <StatisticLine text={'pahaa'} value={bad} />
+            <StatisticLine text={'YHTEENSÄ'} value={sum} />
+            <StatisticLine text={'keskiarvo'} value={average} />
+            <StatisticLine text={'positiivista'} value={positive} />
+          </tbody>
+        </table>
       </>
     )
   }
