@@ -8,17 +8,23 @@ const Button = ({ onClick, text }) => {
   )
 }
 
-// oon edelläkävijä ja olin tehny tän jo
 const Statistics = ({ good, neutral, bad }) => {
 
   let sum = good + neutral + bad
   let average = (sum !== 0) ? (good - bad) / sum : 0
   let positive = (sum !== 0) ? good / sum * 100 : 0
 
+  if (sum !== 0) {
+    return (
+      <>
+        <p>hyvää: {good}<br />ok: {neutral}<br />pahaa: {bad}<br />YHTEENSÄ: {sum}</p>
+        <p>keskiarvo: {average}<br />positiivista: {positive}%</p>
+      </>
+    )
+  }
   return (
     <>
-      <p>hyvää: {good}<br />ok: {neutral}<br />pahaa: {bad}<br />YHTEENSÄ: {sum}</p>
-      <p>keskiarvo: {average}<br />positiivista: {positive}%</p>
+      <p>Yhtään palautetta ei ole vielä annettu.</p>
     </>
   )
 }
