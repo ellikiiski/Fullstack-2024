@@ -8,10 +8,10 @@ const Button = ({ text, onClick }) => {
   )
 }
 
-const Anecdote = ({ text, votes }) => {
+const Anecdote = ({ heading, text, votes }) => {
   return (
     <>
-      <h2>Anecdote</h2>
+      <h2>{heading}</h2>
       <p>{text}<br /></p>
       <p>This anecdote has {votes} votes.</p>
     </>
@@ -33,6 +33,7 @@ const App = () => {
   const emptyVotes = new Array(anecdotes.length).fill(0)
    
   const [selected, setSelected] = useState(0)
+  const [mostVoted, setMostVoted] = useState(0)
   const [votes, setVotes] = useState(emptyVotes)
 
   const handleRandomAnectodote = () => {
@@ -43,14 +44,18 @@ const App = () => {
   const handleNewVote = () => {
     const newVotes = [...votes]
     newVotes[selected] = votes[selected] + 1
+    if (newVotes[selected] > newVotes[mostVoted]) {
+      setMostVoted(selected)
+    }
     setVotes(newVotes)
   }
 
   return (
     <div>
-      <Anecdote text={anecdotes[selected]} votes={votes[selected]} />
+      <Anecdote heading={'Anecdote of the day'} text={anecdotes[selected]} votes={votes[selected]} />
       <Button onClick={handleRandomAnectodote} text={'next anecdote'} />
       <Button onClick={handleNewVote} text={'vote this'} />
+      <Anecdote heading={'Most voted anecdote'} text={anecdotes[mostVoted]} votes={votes[mostVoted]} />
     </div>
   )
 }
