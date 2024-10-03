@@ -8,6 +8,19 @@ const Button = ({ onClick, text }) => {
   )
 }
 
+const Statistics = ({ good, neutral, bad }) => {
+
+  let sum = good + neutral + bad
+  let average = (sum !== 0) ? (good - bad) / sum : 0
+  let positive = (sum !== 0) ? good / sum * 100 : 0
+
+  return (
+    <>
+      <p>hyvää: {good}<br />ok: {neutral}<br />pahaa: {bad}<br />YHTEENSÄ: {sum}</p>
+      <p>keskiarvo: {average}<br />positiivista: {positive}%</p>
+    </>
+  )
+}
 
 const App = () => {
 
@@ -35,9 +48,7 @@ const App = () => {
       <Button onClick={handleNeutralClick} text={'neutraali'} />
       <Button onClick={handleBadClick} text={'paha'} />
       <h2>Tilastot:</h2>
-      <p>hyvää: {good}</p>
-      <p>ok: {neutral}</p>
-      <p>pahaa: {bad}</p>
+      <Statistics good={good} neutral = {neutral} bad={bad} />
     </div>
   )
 }
