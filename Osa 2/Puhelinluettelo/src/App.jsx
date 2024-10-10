@@ -62,12 +62,25 @@ const Notification = ({ message }) => {
   )
 }
 
+const Error = ({ message }) => {
+  if (message === null) {
+    return null
+  }
+
+  return (
+    <div className="error">
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
-  const [newMessage, setNewMessage] = useState('jauzaa')
+  const [newMessage, setNewMessage] = useState(null)
+  const [newError, setNewError] = useState(null)
 
   useEffect(() => {
     personService
@@ -96,7 +109,14 @@ const App = () => {
             setNewMessage(`${updatedPerson.name} updated!`)
             setTimeout(() => {
               setNewMessage(null)
-            }, 4000);
+            }, 4000)
+          })
+          .catch(error => {
+            setNewError(`${updatedPerson.name} was already deleted!`)
+            setTimeout(() => {
+              setNewError(null)
+            }, 4000)
+            setPersons(persons.filter(person => person.id !== updatedPerson.id))
           })
       }
     } else {
@@ -155,6 +175,7 @@ const App = () => {
       <AddForm name={newName} nameChange={handleNameChange} number={newNumber} numberChange={handleNumberChange} onSubmit={addPerson} />
       <br />
       <Notification message={newMessage} />
+      <Error message={newError} />
       <h2>Numbers</h2>
       <Contacts persons={persons} filter={newFilter} deleteFunction={deletePerson}/>
     </div>
