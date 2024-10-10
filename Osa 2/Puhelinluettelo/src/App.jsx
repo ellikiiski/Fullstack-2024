@@ -75,7 +75,7 @@ const App = () => {
         const id = updatedPerson.id
 
         personService
-          .updatePerson(id, updatedPerson)
+          .update(id, updatedPerson)
           .then(updatedPerson => {
             setPersons(persons.map(person => person.id !== id ? person : updatedPerson))
             setNewName('')
@@ -89,7 +89,7 @@ const App = () => {
       }
 
       personService
-        .createPerson(newPerson)
+        .create(newPerson)
         .then(createdPerson => {
           setPersons(persons.concat(createdPerson))
           setNewName('')
@@ -102,7 +102,7 @@ const App = () => {
     const delPerson = persons.find(person => person.id === id)
     if (window.confirm(`Do you really want to delete ${delPerson.name}?`)) {
       personService
-        .deletePerson(id)
+        .remove(id)
         .then(returnedPerson => {
           const remainingPersons = persons.filter(person => person.id !== returnedPerson.id)
           setPersons(remainingPersons)
