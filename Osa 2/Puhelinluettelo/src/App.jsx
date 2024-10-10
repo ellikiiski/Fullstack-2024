@@ -50,11 +50,24 @@ const Contact = ({ person, deleteFunction }) => {
   )
 }
 
+const Notification = ({ message }) => {
+  if (message === null) {
+    return null
+  }
+
+  return (
+    <div className="notification">
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [newMessage, setNewMessage] = useState('jauzaa')
 
   useEffect(() => {
     personService
@@ -80,6 +93,10 @@ const App = () => {
             setPersons(persons.map(person => person.id !== id ? person : updatedPerson))
             setNewName('')
             setNewNumber('')
+            setNewMessage(`${updatedPerson.name} updated!`)
+            setTimeout(() => {
+              setNewMessage(null)
+            }, 4000);
           })
       }
     } else {
@@ -94,6 +111,10 @@ const App = () => {
           setPersons(persons.concat(createdPerson))
           setNewName('')
           setNewNumber('')
+          setNewMessage(`${newPerson.name} added!`)
+          setTimeout(() => {
+            setNewMessage(null)
+          }, 4000);
         })
     }
   }
@@ -106,6 +127,10 @@ const App = () => {
         .then(returnedPerson => {
           const remainingPersons = persons.filter(person => person.id !== returnedPerson.id)
           setPersons(remainingPersons)
+          setNewMessage(`${returnedPerson.name} deleted!`)
+          setTimeout(() => {
+            setNewMessage(null)
+          }, 4000);
         })
     }
   }
@@ -128,6 +153,8 @@ const App = () => {
       <Filter filter={newFilter} onChange={handleFilterChange} />
       <h3>ADD NEW</h3>
       <AddForm name={newName} nameChange={handleNameChange} number={newNumber} numberChange={handleNumberChange} onSubmit={addPerson} />
+      <br />
+      <Notification message={newMessage} />
       <h2>Numbers</h2>
       <Contacts persons={persons} filter={newFilter} deleteFunction={deletePerson}/>
     </div>
