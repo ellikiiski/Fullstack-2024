@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import personService from './services/persons'
+import Contacts from './components/Contacts'
+import Notification from './components/Notification'
+import Error from './components/Error'
 
 const Filter = ({ filter, onChange }) => {
   return (
@@ -29,52 +32,8 @@ const AddForm = ({ name, nameChange, number, numberChange, onSubmit }) => {
   )
 }
 
-const Contacts = ({ persons, filter, deleteFunction }) => {
-  return (
-    <>
-      <ul>
-        {persons.filter(person => person.name.includes(filter)).map((person) => <Contact key={person.id} person={person} deleteFunction={deleteFunction} />)}
-      </ul>
-    </>
-  )
-}
-
-const Contact = ({ person, deleteFunction }) => {
-  return (
-    <>
-      <li>
-        {person.name}: {person.number}
-        <button onClick={() => deleteFunction(person.id)}>delete</button>
-      </li>
-    </>
-  )
-}
-
-const Notification = ({ message }) => {
-  if (message === null) {
-    return null
-  }
-
-  return (
-    <div className="notification">
-      {message}
-    </div>
-  )
-}
-
-const Error = ({ message }) => {
-  if (message === null) {
-    return null
-  }
-
-  return (
-    <div className="error">
-      {message}
-    </div>
-  )
-}
-
 const App = () => {
+  
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
@@ -140,8 +99,10 @@ const App = () => {
   }
 
   const deletePerson = ( id ) => {
+
     const delPerson = persons.find(person => person.id === id)
     if (window.confirm(`Do you really want to delete ${delPerson.name}?`)) {
+      
       personService
         .remove(id)
         .then(returnedPerson => {
