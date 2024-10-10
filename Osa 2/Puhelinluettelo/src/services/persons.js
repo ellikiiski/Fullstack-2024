@@ -7,15 +7,20 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-const create = ( newPerson ) => {
+const createPerson = ( newPerson ) => {
     const request = axios.post(baseURL, newPerson)
     return request.then(response => response.data)
 }
 
-const update = ( id, updatedPerson ) => {
+const updatePerson = ( id, updatedPerson ) => {
     const request = axios.put(`${baseURL}/${id}`, updatedPerson)
     return request.then(response => response.data)
 
 }
 
-export default { getAll, create, update }
+const deletePerson = ( id ) => {
+    const request = axios.delete(`${baseURL}/${id}`)
+    return request.then(response => response.data)
+}
+
+export default { getAll, createPerson, updatePerson, deletePerson }

@@ -29,12 +29,23 @@ const AddForm = ({ name, nameChange, number, numberChange, onSubmit }) => {
   )
 }
 
-const Contacts = ({ persons, filter }) => {
+const Contacts = ({ persons, filter, deleteFunction }) => {
   return (
     <>
       <ul>
-        {persons.filter(person => person.name.includes(filter)).map((person, index) => <li key={index}>{person.name}: {person.number}</li>)}
+        {persons.filter(person => person.name.includes(filter)).map((person) => <Contact key={person.id} person={person} deleteFunction={deleteFunction} />)}
       </ul>
+    </>
+  )
+}
+
+const Contact = ({ person, deleteFunction }) => {
+  return (
+    <>
+      <li>
+        {person.name}: {person.number}
+        <button onClick={() => deleteFunction(person.id)}>delete</button>
+      </li>
     </>
   )
 }
@@ -64,11 +75,23 @@ const App = () => {
       }
 
       personService
-        .create(newPerson)
+        .createPerson(newPerson)
         .then(createdPerson => {
           setPersons(persons.concat(createdPerson))
           setNewName('')
           setNewNumber('')
+        })
+    }
+  }
+
+  const deletePerson = ( id ) => {
+    const delPerson = persons.find(person => person.id === id)
+    if (window.confirm(`Do you really want to delete ${delPerson.name}?`)) {
+      personService
+        .deletePerson(id)
+        .then(returnedPerson => {
+          const remainingPersons = persons.filter(person => person.id !== returnedPerson.id)
+          setPersons(remainingPersons)
         })
     }
   }
@@ -92,7 +115,7 @@ const App = () => {
       <h3>ADD NEW</h3>
       <AddForm name={newName} nameChange={handleNameChange} number={newNumber} numberChange={handleNumberChange} onSubmit={addPerson} />
       <h2>Numbers</h2>
-      <Contacts persons={persons} filter={newFilter}/>
+      <Contacts persons={persons} filter={newFilter} deleteFunction={deletePerson}/>
     </div>
   )
 }
