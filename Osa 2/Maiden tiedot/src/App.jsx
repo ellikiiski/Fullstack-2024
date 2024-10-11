@@ -64,6 +64,40 @@ const CountryInfo = ({ country }) => {
         {Object.values(country.languages).map((l, i) => <li key={i}>{l}</li>)}
       </ul>
       <img src={country.flags.png} alt={`${country.name.common} flag`} />
+      <Weather country={country} />
+    </>
+  )
+}
+
+const Weather = ({ country }) => {
+  const [weatherData, setWeatherData] = useState(null)
+
+  const capital = country.capital[0]
+  const apiKey = 'my_key' // API key here
+
+  useEffect(() => {
+    axios
+      .get(`https://api.openweathermap.org/data/2.5/weather?q=${capital}&appid=${apiKey}&units=metric`)
+      .then(response => {
+        setWeatherData(response.data)
+      })
+      .catch(error =>
+        console.log('API key probably missing! Paste your own in the code.')
+      )
+  }, [capital])
+
+  return (
+    <>
+      <h3>Weather in {capital}</h3>
+      {weatherData ? (
+        <>
+          <p>Temperature: {weatherData.main.temp} °C</p>
+          <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}/>
+          <p>Wind speed: {weatherData.wind.speed} m/s</p>
+        </>
+      ) : (
+        <p>Loading weather data...<br />(Check the console, you probably need to add your own API key in the code. I ain't posting mine on Github.)</p>
+      )}
     </>
   )
 }
