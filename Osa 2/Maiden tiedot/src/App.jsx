@@ -1,9 +1,17 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-const Result = ({ countries, filter }) => {
+const Result = ({ countries, filter, chosen, chooseFunc }) => {
   const filteredCountries = countries.filter(c => c.name.common.toLowerCase().includes(filter.toLowerCase()))
   const matches = filteredCountries.length
+
+  if (chosen) {
+    return (
+      <>
+        <CountryInfo country={chosen} />
+      </>
+    )
+  }
 
   if (matches === 0) {
     return (
@@ -21,7 +29,7 @@ const Result = ({ countries, filter }) => {
     return (
       <>
         <ul>
-          {filteredCountries.map((c, i) => <li key={i}> {c.name.common}</li>)}
+          {filteredCountries.map((c, i) => <ListedCountry key={i} country={c} showCountry={() => chooseFunc(c)}/>)}
         </ul>
       </>
     )
@@ -30,6 +38,17 @@ const Result = ({ countries, filter }) => {
   return (
     <>
       <p>Too many matches ({matches}), specify the filter.</p>
+    </>
+  )
+}
+
+const ListedCountry = ({ country, showCountry }) => {
+  return (
+    <>
+      <li>
+        {country.name.common}
+        <button onClick={showCountry}>show</button>
+      </li>
     </>
   )
 }
@@ -52,6 +71,7 @@ const CountryInfo = ({ country }) => {
 const App = () => {
   const [newFilter, setNewFilter] = useState('')
   const [allCountries, setAllCountries] = useState([])
+  const [chosenCountry, setChosenCountry] = useState(null)
 
   useEffect(() => {
     axios
@@ -59,17 +79,25 @@ const App = () => {
       .then(response => setAllCountries(response.data))
   }, [])
 
+  const chooseCountry = (country) => {
+    setChosenCountry(country)
+  }
+
   const handleFilterChange = (event) => {
     setNewFilter(event.target.value)
+    if (newFilter === '') {
+      setChosenCountry(null)
+    }
   }
 
   return (
     <div>
-      <p>find countries</p>
+      <h3>find countries</h3>
+      <p>(clear the filter and start typing again to seach again)</p>
       <form>
         <input value={newFilter} onChange={handleFilterChange} />
       </form>
-      <Result countries={allCountries} filter={newFilter} />
+      <Result countries={allCountries} filter={newFilter} chosen={chosenCountry} chooseFunc={chooseCountry}/>
     </div>
   )
 }
