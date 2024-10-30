@@ -1,0 +1,27 @@
+/* Koodi kopioitu suoraan osasta 2 lukunottamatta erikseen kommentoituja kohtia */
+
+h1 {
+    color: black;
+  
+    font-style: italic;
+  }
+  
+.notification {
+  color: green;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
