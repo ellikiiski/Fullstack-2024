@@ -28,7 +28,7 @@ Aja terminaalissa
 ```
 npx json-server --port=3001 --watch tietokanta.json
 ```
-JSON-palvelin käynnistyy porttiin 3001 (http//localhost:5173).
+JSON-palvelin käynnistyy porttiin 3001 (http//localhost:3001).
 
 Saman voi saavuttaa asentamalla JSON-serveri projektin dovelluskehityksen alaiseski riippuvuudeksi ajamalla projektin juuressa (samassa kansiossa, jossa *package.json* on) komennon
 ```
