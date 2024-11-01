@@ -2,7 +2,33 @@
 Komennot konsoliin ja riippuvuushommat ja muut.
 
 ## Frontti
-Tulee kun jaksan palata näihin.
+
+### Projektin luonti
+Luo projektikansio, siirry kansioon ja alusta projekti komentosarjalla
+```
+npm create vite@latest projektin_nimi -- --template react
+cd projektin_nimi
+npm install
+```
+
+### Sovelluksen käynnistäminen lokaalisti
+
+#### Käynnistäminen sovelluskehitysmoodissa
+Aja projektikansiossa
+```npm run dev```
+Sovellus käynnistyy porttiin 5173 (http//localhost:5173).
+
+### Yksinkertainen "harjoitus"-backend frontin devaamiseen
+JSON-serverin avulla voidaan fronttia kehittäessä simuloida serverin toimintaa.
+* Luo ensin JSON-tiedosto *tietokanta.json*, joka sisältää oikean muotoista dataa.
+
+Aja terminaalissa
+```npx json-server --port=3001 --watch tietokanta.json```
+JSON-palvelin käynnistyy porttiin 3001 (http//localhost:5173).
+
+Saman voi saavuttaa asentamalla JSON-serveri projektin dovelluskehityksen alaiseski riippuvuudeksi ajamalla projektin juuressa (samassa kansiossa, jossa *package.json* on) komennon
+```npm install json-server --save-dev```
+ja lisäämällä tiedoston *package.json* kohdan *scripts* alle `"server": "json-server -p3001 --watch tietokanta.json"`.
 
 ## Bäkki
 
