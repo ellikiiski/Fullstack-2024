@@ -1,7 +1,7 @@
 # Muistilappu
 Komennot konsoliin ja riippuvuushommat ja muut.
 
-## Frontti
+## FRONTEND
 
 ### Projektin luonti
 Luo projektikansio, siirry kansioon ja alusta projekti komentosarjalla
@@ -36,7 +36,7 @@ npm install json-server --save-dev
 ```
 ja lisäämällä tiedoston *package.json* kohdan *scripts* alle `"server": "json-server -p3001 --watch tietokanta.json"`.
 
-## Bäkki
+## BACKEND
 
 ### Palvelimen luonti
 
@@ -95,4 +95,18 @@ npm start
 
 Vaihtoehtoinen tapa "suoraan" nodella: aja projektikansiossa `node index.js`.
 
+### Frontendin ja backendin yhteispeli
 
+Tähän CORS ja muu matskun osan 3b alku.
+
+## SOVELLUS INTERNETTIIN
+
+Nää pitää kirjoittaa kunhan jaksan ymmärtää tän homman selkeästi.
+
+### Uuden web srvicen luominen (Render)
+
+### Frontendin tuotantoversio
+
+### Sovelluksen toiminta lokaalisti
+
+### Sovelluksen toiminta internetissä (Render)
