@@ -1,16 +1,17 @@
-##  Osa 0
+### Fullstack OSA 0
+* [Sekvenssikaaviot](https://github.com/ellikiiski/Fullstack-2024/tree/main/Osa%200) (teht. 4-6)
 
-### Tehtävät
+#### Kuvat
 
-#### 0.4 Sekvenssikaavio lomakkeen lähettämisestä
+##### 0.4 Sekvenssikaavio lomakkeen lähettämisestä
 
 ![kuva 0.4](https://github.com/ellikiiski/Fullstack-2024/blob/main/Osa%200/teht-4.png)
 
-#### 0.5 Sekvenssikaavio SPA-version lataamisesta
+##### 0.5 Sekvenssikaavio SPA-version lataamisesta
 
 ![kuva 0.5](https://github.com/ellikiiski/Fullstack-2024/blob/main/Osa%200/teht-5.png)
 
-#### 0.6 Sekvenssikaavio SPA-version lomakkeen lähettämisestä
+##### 0.6 Sekvenssikaavio SPA-version lomakkeen lähettämisestä
 
 ![kuva 0.6](https://github.com/ellikiiski/Fullstack-2024/blob/main/Osa%200/teht-6.png)
 
