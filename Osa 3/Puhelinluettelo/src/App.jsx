@@ -1,5 +1,3 @@
-// Koodi kopioitu suoraan osasta 2 lukunottamatta erikseen kommentoituja kohtia
-
 import { useState, useEffect } from 'react'
 import personService from './services/persons'
 import Contacts from './components/Contacts'
@@ -97,10 +95,15 @@ const App = () => {
             setNewMessage(null)
           }, 4000);
         })
+        .catch(error => {
+          setNewError(error.response.data['error'])
+          setTimeout(() => {
+            setNewError(null)
+          }, 4000);
+        })
     }
   }
 
-  // Tätä funktiota muutettu kakkososaan verrattuna
   const deletePerson = ( id ) => {
 
     const delPerson = persons.find(person => person.id === id)

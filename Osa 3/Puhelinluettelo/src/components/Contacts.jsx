@@ -1,5 +1,3 @@
-// Koodi kopioitu suoraan osasta 2 lukunottamatta erikseen kommentoituja kohtia
-
 const Contacts = ({ persons, filter, deleteFunction }) => {
     return (
       <>

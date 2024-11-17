@@ -1,7 +1,5 @@
-// Koodi kopioitu suoraan osasta 2 lukunottamatta erikseen kommentoituja kohtia
-
 import axios from "axios"
-const baseURL = '/api/persons' // Päivitetty kakkososasta
+const baseURL = '/api/persons'
 
 const getAll = () => {
     const request = axios.get(baseURL)
