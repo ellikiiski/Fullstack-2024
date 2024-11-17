@@ -102,10 +102,7 @@ const App = () => {
           }, 4000);
         })
         .catch(error => {
-
-          setNewError(error.response.data.error)
-          console.log(error.response.data.error)
-          
+          setNewError(error.response.data.error)          
           setTimeout(() => {
             setNewError(null)
           }, 4000);
