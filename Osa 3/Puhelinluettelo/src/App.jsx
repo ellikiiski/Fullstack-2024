@@ -73,7 +73,7 @@ const App = () => {
           .catch(error => {
 
             if (error.response && error.response.data.error) {
-              setNewError(`Number in wrong format!`)
+              setNewError(error.response.data.error)
             } else {
               setNewError(`${updatedPerson.name} was already deleted!`)
               setPersons(persons.filter(person => person.id !== updatedPerson.id))
@@ -102,16 +102,8 @@ const App = () => {
           }, 4000);
         })
         .catch(error => {
-          
-          let eMessage = ''
-          if (error.response.data.error.includes('name')) {
-            eMessage = 'Name too short! '
-          }
-          if (error.response.data.error.includes('number')) {
-            eMessage += 'Number in wrong format!'
-          }
 
-          setNewError(eMessage)
+          setNewError(error.response.data.error)
           console.log(error.response.data.error)
           
           setTimeout(() => {
